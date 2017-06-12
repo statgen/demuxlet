@@ -13,7 +13,7 @@ You can clone the current snapshot of this repository to install as well
 <pre>
 $ git clone https://github.com/statgen/demuxlet.git
 $ cd demuxlet
-$ autoreconf -vf1
+$ autoreconf -vfi
 $ ./configure
 $ make
 $ make install (may require root privilege)

@@ -5,7 +5,7 @@
 #include <cstring>
 #include <vector>
 
-#include "bam_ordered_reader.h"
+#include "hts_utils.h"
 #include "Error.h"
 #include "tsv_reader.h"
 #include "genomeLoci.h"

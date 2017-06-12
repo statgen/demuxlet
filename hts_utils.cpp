@@ -22,7 +22,7 @@
 */
 
 #include "hts_utils.h"
-#include "hfile.h"
+#include "htslib/hfile.h"
 #include "Error.h"
 
 /********

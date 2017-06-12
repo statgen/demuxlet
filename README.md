@@ -8,13 +8,15 @@ Genetic multiplexing of barcoded single cell RNA-seq
 
 ### Installing demuxlet
 
-You can clone the current snapshot of this repository to install as well
+Before installing demuxlet, you need to install [htslib](https://github.com/samtools/htslib) in the same directory you want to install demuxlet (i.e. demuxlet and htslib should be siblings).
+
+After installing htslib, you can clone the current snapshot of this repository to install as well
 
 <pre>
 $ git clone https://github.com/statgen/demuxlet.git
 $ cd demuxlet
 $ autoreconf -vfi
-$ ./configure
+$ ./configure  (with additional options such as --prefix)
 $ make
 $ make install (may require root privilege)
 </pre>

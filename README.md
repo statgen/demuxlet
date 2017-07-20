@@ -68,3 +68,38 @@ Cell/droplet filtering options
   --min-uniq      [INT: 0]            : Minimum number of unique reads (determined by UMI/SNP pair) for a droplet/cell to be considered
   --min-snp       [INT: 0]            : Minimum number of SNPs with coverage for a droplet/cell to be considered
 </pre>
+
+### Interpretation of output files
+
+**_demuxlet_** generates multiple output file, such as `[prefix].best`, `[prefix].sing`, `[prefix].sing2`, and optionally `[prefix].pair` (with `--write-pair` argument). Each file contains the following information
+* The `[prefix].best` file contains the best guess of the sample identity, with detailed statistics to reach to the best guess
+* The `[prefix].sing` file contains the statistics for matching each cell with each possible sample.
+* The `[prefix].sing2` file contains the statistics similar information to the previous one, but generated for sanity checking of the `[prefix].pair` results.
+* The `[prefix].pair` file contains the statistics for matching each cell with each possible configuration of doublet. 
+
+The `[prefix].best` file contains the following 22 columns.
+ 1. BARCODE - Cell barcode for the cell that is being assigned in this row
+ 2. RD.TOTL - The total number of reads overlapping with variant sites for each droplet.
+ 3. RD.PASS - The total number of reads that passed the quality threshold, such as mapping quality, base quality. 
+ 4. RD.UNIQ - The total number of UMIs that passed the quality threshold. If a UMI is observed in a single variant multiple times, it won't be counted more. If a UMI is observed across multiple variants, it will be counted as different.
+ 5. N.SNP   - The total number of variants overlapping with any read in the droplet.
+ 6. BEST    - The best assignment for sample ID.
+    * For singlets, SNG-<sample ID>
+    * For doublets, DBL-<sample ID1>-<sampleID2>-<mixture rate>
+    * For ambiguous droplets, , AMB-<best-singlet-sampleID>-<next-best-singlet-sampleID>-<doublet ID1/ID2>)
+ 1. SNG.1ST - The best singlet assignment for sample ID
+ 1. SNG.LLK1 - The log(likelihood that the ID from SNG.1ST is the correct assignment)       
+ 1. SNG.2ND - The next best singlet assignment for sample ID
+ 1. SNG.LLK2 - The log(likelihood that the ID from SNG.2ND is the correct assignment)        
+ 1. SNG.LLK0 - The log-likelihood from allele frequencies only      
+ 1. DBL.1ST - The sample ID that is most likely included if the assignment is a doublet
+ 1. DBL.2ND - The sample ID that is next most likely included ifthe assignment is a doublet
+ 1. ALPHA   - % Mixture Proportion
+ 1. LLK12   - The log(likelihood that the ID is a doublet)
+ 1. LLK1    - The log(likelihood that the ID from DBL.1ST is the correct singlet assignment)
+ 1. LLK2    - The log(likelihood that the ID from DBL.2ND is the correct singlet assignment)
+ 1. LLK10   - The log(likelihood that the ID from DBL.1ST is one of the doublet, and the other doublet identity is calculated from allele frequencies only)   
+ 1. LLK20   - The log(likelihood that the ID from DBL.2ND is one of the doublet, and the other doublet identity is calculated from allele frequencies only)   
+ 1. LLK00   - The log(likelihood that the droplet is doublet, but both identities are calculated from allele frequencies only)   
+ 1. PRB.DBL - Posterior probability of the doublet assignment
+ 1. PRB.SNG1 - Posterior probability of the singlet assignment

@@ -117,11 +117,11 @@ This cleaned 10x data can be fed into the Cell Ranger pipeline. Cell Ranger prov
 
 In order to use the cell assignment from demuxlet to label the cells, you can use the statistics information to adjust the cutoff for singlets to provide the identification for the optimum number of cells. To illustrate this point, below we show two TSNE plots with the cells labelled by the identity from demuxlet using either the identification as `SNG-[cell-type]` in the `BEST` column which labels 1455/3388 cells versus using the identification of singlets by comparing the likelihood of the cell being a singlet to the likelihood of the cell being a doublet (i.e. `SNG.LLK1 - LLK12 > 1`) which labelled 2491/3388 cells.
 
-![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture1.pdf)
+![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture1.png)
 
 The identification of Jurkat versus 293T by `demuxlet` for this dataset can be verified by comparing the identification of the Jurkat and 293T clusters by expression of the CD3D and XIST markers, respectively.
 
-![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture2.pdf)
+![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture2.png)
 
 ## 4. Source of 293T and Jurkat VCF file. ##
 1. 293T VCF

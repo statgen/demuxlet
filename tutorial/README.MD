@@ -119,9 +119,9 @@ In order to use the cell assignment from demuxlet to label the cells, you can us
 
 The identification of Jurkat versus 293T by `demuxlet` for this dataset can be verified by comparing the identification of the Jurkat and 293T clusters by expression of the CD3D and XIST markers, respectively.
 
-(https://github.com/statgen/demuxlet/blob/master/tutorial/Picture1.png)
+![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture1.png)
 
-(https://github.com/statgen/demuxlet/blob/master/tutorial/Picture2.png)
+![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture2.png)
 
 
 ## 4. Source of 293T and Jurkat VCF file.##

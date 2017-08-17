@@ -1,9 +1,10 @@
-Tutorial for demuxlet 1 Introduction
-1.1 Overview
-   This tutorial provides streamlined instructions for using the tool demuxlet. For a more detailed
- description of all of the options available to use with demuxlet, please refer to the README.
- demuxlet is a software tool to deconvolute sample identity and identify multiplets when multiple samples
- are pooled by barcoded single cell sequencing. demuxlet requires the following input files:
+# Tutorial for demuxlet 1 Introduction #
+
+## 1.1 Overview ##
+
+This tutorial provides streamlined instructions for using the tool **demuxlet**. For a more detailed description of all of the options available to use with **demuxlet**, please refer to the README.
+
+**demuxlet** is a software tool to deconvolute sample identity and identify multiplets when multiple samples are pooled by barcoded single cell sequencing. **demuxlet** requires the following input files:
  (1) a SAM/BAM/CRAM file produced by the standard 10x sequencing platform, or any other
  barcoded single cell RNA-seq (with proper --tag-UMI and --tag-group) options
  (2) a VCF/BCF file containing the genotype (GT), posterior probability (GP), or genotype

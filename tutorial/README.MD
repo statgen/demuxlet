@@ -65,7 +65,7 @@ The .best file contains the assignments of the best sample identity (singlet: `S
 2. `[prefix].single`
 For complete descriptions of the columns in each output file, please see the demuxlet README.
 
-## 3 Analyzing the sample dataset ##
+## 3. Analyzing the sample dataset ##
 
 You can download a VCF files for Jurkat and 293T cell lines that can be used to run demuxlet on the publicly available BAM file for a 50:50 mixture of 293T and Jurkat cells from the ChromiumTM Cell RangerTM pipeline.
 

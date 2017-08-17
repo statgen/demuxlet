@@ -1,8 +1,8 @@
 # Tutorial for demuxlet ##
 
-## 1 Introduction ##
+## 1. Introduction ##
 
-### 1.1 Overview ###
+### 1.1. Overview ###
 
 This tutorial provides streamlined instructions for using the tool `demuxlet`. For a more detailed description of all of the options available to use with `demuxlet`, please refer to the README.
 
@@ -11,18 +11,17 @@ This tutorial provides streamlined instructions for using the tool `demuxlet`. F
 1. a SAM/BAM/CRAM file produced by the standard 10x sequencing platform, or any other barcoded single cell RNA-seq (with proper `--tag-UMI` and `--tag-group`) options
 2. a VCF/BCF file containing the genotype (GT), posterior probability (GP), or genotype likelihood (GL) to assign each barcode to a specific sample (or a pair of samples) in the VCF file.
 
-### 1.2 Additional resources ###
+### 1.2. Additional resources ###
 
-The README for demuxlet is available here:
-https://github.com/statgen/demuxlet
+The README for demuxlet is available [here](https://github.com/statgen/demuxlet)
 
 If you have questions about using demuxlet or suggestions for future releases, please contact jimmie.ye@ucsf.edu.
 
-## 2 Getting Started ##
+## 2. Getting Started ##
 
-### 2.1 Installing demuxlet ###
+### 2.1. Installing demuxlet ###
 
-#### 2.1.1 Install htslib ####
+#### 2.1.1. Install htslib ####
 ```
 $ git clone https://github.com/samtools/htslib.gitcd $ cd path/to/htslib
 $ autoheader
@@ -32,7 +31,7 @@ $ make
 $ make install # optional, DESTDIR=/path/file
 ```
 
-#### 2.1.2 Install demuxlet ####
+#### 2.1.2. Install demuxlet ####
 
 demuxlet and htslib should be installed in same directory
 
@@ -47,7 +46,7 @@ $ make
 $ make install # optional, DESTDIR=/path/file
 ```
 
-### 2.2 Running demuxlet ###
+### 2.2. Running demuxlet ###
 ```
 $ cd demuxlet
 $ ./demuxlet --sam $bam --vcf $vcf --field $(GT or GP or PL) --out $filename
@@ -57,7 +56,7 @@ Add bam file name for `$bam` and vcf file name for `$vcf`. Use `<(zcat $vcf)` if
 
 The options for `--field` are individual genotypes (GT), posterior probability (GP), or genotype likelihood (PL). If using GT option for `--field`, you must include `--geno-error`, which is the genotype error rate.
 
-### 2.3 demuxlet output ###
+### 2.3. demuxlet output ###
 
 The demuxlet software produces three output files.
 

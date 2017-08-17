@@ -90,7 +90,7 @@ $ ./demuxlet --sam /path/file/jurkat:293t_50:50_possorted_genome_bam.bam --vcf <
 
 ### 3.3 Secondary analysis in R ###
 In this analysis, we will use R to produce a t-SNE (t-Distributed Stochastic Neighbor Embedding) plot of the cells from the 293T:Jurkat 10x experiment with the cells colored by the assignments from the demuxlet pipeline. The analysis requires the Cell Ranger R package.
-You can find instructions for downloading the Cell Ranger package [here] (https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/rkit).
+You can find instructions for downloading the Cell Ranger package [here](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/rkit).
 
 #### 3.3.1 Download and clean the Cell Ranger output ####
 Download the data set from the 10x website and unzip the files. You need to use `--force-local` while unzipping since the file names contain a `:`.
@@ -113,23 +113,21 @@ $ mv jurkat:293t_50:50_metrics_summary.csv outs/metrics_summary.csv
 ```
 
 #### 3.3.2 TSNE plot ####
-This cleaned 10x data can be fed into the Cell Ranger pipeline. Cell Ranger provides a tutorial for creating TSNE plots and adding cell markers here: http://cf.10xgenomics.com/supp/cell-exp/cellrangerrkit-PBMC-vignette-knitr-2.0.0.pdf
-In order to use the cell assignment from demuxlet to label the cells, you can use the statistics information to adjust the cutoff for singlets to provide the identification for the optimum number of cells. To illustrate this point, below we show two TSNE plots with the cells labelled by the identity from demuxlet using either the identification as “SNG-[cell-type]” in the BEST column which labels 1455/3388 cells versus using the identification of singlets by comparing the likelihood of the cell being a singlet to the likelihood of the cell being a doublet (i.e. SNG.LLK1 - LLK12 > 1) which labelled 2491/3388 cells.
-          
- The identification of Jurkat versus 293T by demuxlet for this dataset can be verified by comparing the identification of the Jurkat and 293T clusters by expression of the CD3D and XIST markers, respectively.
- 
-4 Source of 293T and Jurkat VCF file.
- 1.
-2.
-3.
-293T VCF
+This cleaned 10x data can be fed into the Cell Ranger pipeline. Cell Ranger provides a tutorial for creating TSNE plots and adding cell markers [here](http://cf.10xgenomics.com/supp/cell-exp/cellrangerrkit-PBMC-vignette-knitr-2.0.0.pdf).
+
+In order to use the cell assignment from demuxlet to label the cells, you can use the statistics information to adjust the cutoff for singlets to provide the identification for the optimum number of cells. To illustrate this point, below we show two TSNE plots with the cells labelled by the identity from demuxlet using either the identification as `SNG-[cell-type]` in the `BEST` column which labels 1455/3388 cells versus using the identification of singlets by comparing the likelihood of the cell being a singlet to the likelihood of the cell being a doublet (i.e. `SNG.LLK1 - LLK12 > 1`) which labelled 2491/3388 cells.
+
+The identification of Jurkat versus 293T by `demuxlet` for this dataset can be verified by comparing the identification of the Jurkat and 293T clusters by expression of the CD3D and XIST markers, respectively.
+
+## 4. Source of 293T and Jurkat VCF file.##
+1. 293T VCF
 Source website:
 http://hek293genome.org/v2/data.php
 Source file:
 http://bioinformatics.psb.ugent.be/downloads/genomeview/hek293/SNP/293T_RTG.vcf.gz
-Jurkat VCF
+2. Jurkat VCF
 Source website: https://zenodo.org/record/400615#.WYIh7IQrLIV
 Source file: https://zenodo.org/record/400615/files/jurkat_final_variant_calls.tar.gz
-293T:jurkat VCF file generation
+3. 293T:jurkat VCF file generation
 We used the CrossMap tool to liftover the 293T vcf file from hg18 to hg19. The tetraploid genotype for the Jurkat vcf was collapsed to a diploid genotype before being merged with the 293T vcf file and the resulting file was filtered to contain only the exon positions.
     

@@ -17,6 +17,8 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_CXX
 
 AC_CHECK_HEADERS([limits.h stddef.h stdint.h stdlib.h string.h unistd.h])
+AC_CHECK_HEADERS([htslib/kseq.h htslib/kstring.h htslib/khash.h htslib/hts.h htslib/sam.h],
+		 [], [AC_MSG_ERROR([htslib headers not found. Please download and compile, and pass CPPFLAGS=-I<htslib_path>])])
 
 AC_HEADER_STDBOOL
 AC_C_INLINE
@@ -38,6 +40,7 @@ AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([floor gethostname memset pow select sqrt strchr strstr strtol])
 AC_CHECK_LIB(z, gzopen, [], [AC_MSG_ERROR([libz.{so,a} was not found. Please install zlib at http://www.zlib.net/ first])])
+AC_CHECK_LIB(hts, hts_open, [], [AC_MSG_ERROR([libhts.{so,a} was not found. Please download and compile htslib and pass LDFLAGS=-L<htslib_path>])])
 AC_CHECK_LIB([m],[erf],[AC_DEFINE([HAVE_ERF],[1],[libm includes erf])])
 AC_CHECK_LIB([m],[erfc],[AC_DEFINE([HAVE_ERFC],[1],[libm includes erfc])])
 

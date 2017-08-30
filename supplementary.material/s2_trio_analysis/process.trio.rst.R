@@ -83,6 +83,6 @@ for(n.snp in n.snps) {
 
 ggplot(df, aes(snps, probs, color=as.factor(tot.snps), pch=type))+geom_point();
 
-pdf("snps.vs.probs.10000.pdf");
-plot(n.snps, output);
-dev.off();
+# pdf("snps.vs.probs.10000.pdf");
+# plot(n.snps, output);
+# dev.off();

@@ -72,12 +72,15 @@ You can download a VCF files for Jurkat and 293T cell lines that can be used to 
 
 ### 3.1 Download datasets ###
 BAM file from 10x data for jurkat:293T sample
+
 `$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam.bam`
 
 Index file for BAM file from 10x data for jurkat:293T sample
+
 `$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam_index.bam.bai`
 
 VCF file with genotype data for 293T and Jurkat cells. See section 4 for original sources of VCF files. 
+
 `$ wget https://github.com/statgen/demuxlet/blob/master/tutorial/jurkat_293T_exons_only.vcf.gz`
 
 ### 3.2 Run demuxlet ###

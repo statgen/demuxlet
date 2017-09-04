@@ -100,9 +100,21 @@ You can find instructions for downloading the Cell Ranger package [here](https:/
 Download the data set from the 10x website and unzip the files. You need to use `--force-local` while unzipping since the file names contain a `:`.
 
 ```
-$ wget http://cf.10xgenomics.com/samples/cell- exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_analysis.tar.gz
-$ wget http://cf.10xgenomics.com/samples/cell- exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_filtered_gene_bc_matrices.tar.gz $ wget http://cf.10xgenomics.com/samples/cell- exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_raw_gene_bc_matrices.tar.gz
-$ wget http://cf.10xgenomics.com/samples/cell- exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_metrics_summary.csv
+$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_analysis.tar.gz
+$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_filtered_gene_bc_matrices.tar.gz
+$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_raw_gene_bc_matrices.tar.gz
+$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_metrics_summary.csv
+```
+
+or if you don't have wget
+
+```
+$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_analysis.tar.gz > jurkat:293t_50:50_analysis.tar.gz
+$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_filtered_gene_bc_matrices.tar.gz > jurkat:293t_50:50_raw_gene_bc_matrices.tar.gz
+$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_raw_gene_bc_matrices.tar.gz > jurkat:293t_50:50_raw_gene_bc_matrices.tar.gz
+$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_metrics_summary.csv > jurkat:293t_50:50_metrics_summary.csv
+```
+
 $ tar -x -z --force-local -f jurkat:293t_50:50_analysis.tar.gz
 $ tar -x -z --force-local -f jurkat:293t_50:50_filtered_gene_bc_matrices.tar.gz
 $ tar -x -z --force-local -f jurkat:293t_50:50_raw_gene_bc_matrices.tar.gz

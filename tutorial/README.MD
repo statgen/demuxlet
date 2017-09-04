@@ -75,13 +75,25 @@ BAM file from 10x data for jurkat:293T sample
 
 `$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam.bam`
 
+or if you don't have `wget`
+
+`$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam.bam > jurkat:293t_50:50_possorted_genome_bam.bam`
+
 Index file for BAM file from 10x data for jurkat:293T sample
 
 `$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam_index.bam.bai`
 
+or if you don't have `wget`
+
+`$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam_index.bam.bai > jurkat:293t_50:50_possorted_genome_bam_index.bam.bai`
+
 VCF file with genotype data for 293T and Jurkat cells. See section 4 for original sources of VCF files. 
 
 `$ wget https://github.com/statgen/demuxlet/blob/master/tutorial/jurkat_293T_exons_only.vcf.gz`
+
+of if you don't have `wget`
+
+`$ curl https://github.com/statgen/demuxlet/blob/master/tutorial/jurkat_293T_exons_only.vcf.gz > jurkat_293T_exons_only.vcf.gz`
 
 ### 3.2 Run demuxlet ###
 
@@ -97,7 +109,7 @@ In this analysis, we will use R to produce a t-SNE (t-Distributed Stochastic Nei
 You can find instructions for downloading the Cell Ranger package [here](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/rkit).
 
 #### 3.3.1 Download and clean the Cell Ranger output ####
-Download the data set from the 10x website and unzip the files. You need to use `--force-local` while unzipping since the file names contain a `:`.
+Download the data set from the 10x website.
 
 ```
 $ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_analysis.tar.gz
@@ -115,6 +127,8 @@ $ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat
 $ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_metrics_summary.csv > jurkat:293t_50:50_metrics_summary.csv
 ```
 
+Then unzip and untar the files. You need to use `--force-local` while unzipping since the file names contain a `:`.
+```
 $ tar -x -z --force-local -f jurkat:293t_50:50_analysis.tar.gz
 $ tar -x -z --force-local -f jurkat:293t_50:50_filtered_gene_bc_matrices.tar.gz
 $ tar -x -z --force-local -f jurkat:293t_50:50_raw_gene_bc_matrices.tar.gz

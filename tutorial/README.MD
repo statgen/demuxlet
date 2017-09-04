@@ -71,7 +71,8 @@ For complete descriptions of the columns in each output file, please see the dem
 You can download a VCF files for Jurkat and 293T cell lines that can be used to run demuxlet on the publicly available BAM file for a 50:50 mixture of 293T and Jurkat cells from the ChromiumTM Cell RangerTM pipeline.
 
 ### 3.1 Download datasets ###
-BAM file from 10x data for jurkat:293T sample
+
+#### 3.1.1. Download the BAM file from 10x data for jurkat:293T sample ####
 
 `$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam.bam`
 
@@ -79,7 +80,7 @@ or if you don't have `wget`
 
 `$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam.bam > jurkat:293t_50:50_possorted_genome_bam.bam`
 
-Index file for BAM file from 10x data for jurkat:293T sample
+#### 3.1.2. Download the index file for BAM file from 10x data for jurkat:293T sample ####
 
 `$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam_index.bam.bai`
 
@@ -87,7 +88,7 @@ or if you don't have `wget`
 
 `$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam_index.bam.bai > jurkat:293t_50:50_possorted_genome_bam_index.bam.bai`
 
-VCF file with genotype data for 293T and Jurkat cells. See section 4 for original sources of VCF files. 
+#### 3.1.3. Download the VCF file with genotype data for 293T and Jurkat cells. See section 4 for original sources of VCF files. ####
 
 `$ wget https://github.com/statgen/demuxlet/blob/master/tutorial/jurkat_293T_exons_only.vcf.gz`
 
@@ -108,7 +109,7 @@ $ ./demuxlet --sam /path/file/jurkat:293t_50:50_possorted_genome_bam.bam --vcf <
 In this analysis, we will use R to produce a t-SNE (t-Distributed Stochastic Neighbor Embedding) plot of the cells from the 293T:Jurkat 10x experiment with the cells colored by the assignments from the demuxlet pipeline. The analysis requires the Cell Ranger R package.
 You can find instructions for downloading the Cell Ranger package [here](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/rkit).
 
-#### 3.3.1 Download and clean the Cell Ranger output ####
+#### 3.3.1 Download the Cell Ranger output ####
 Download the data set from the 10x website.
 
 ```
@@ -127,14 +128,20 @@ $ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat
 $ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_metrics_summary.csv > jurkat:293t_50:50_metrics_summary.csv
 ```
 
-Then unzip and untar the files. You need to use `--force-local` while unzipping since the file names contain a `:`.
+#### 3.3.2 Unzip and untar the files. ####
+
+You need to use `--force-local` while unzipping since the file names contain a `:`.
+
 ```
 $ tar -x -z --force-local -f jurkat:293t_50:50_analysis.tar.gz
 $ tar -x -z --force-local -f jurkat:293t_50:50_filtered_gene_bc_matrices.tar.gz
 $ tar -x -z --force-local -f jurkat:293t_50:50_raw_gene_bc_matrices.tar.gz
 ```
 
-Clean up the file directory tree so that the files are correctly organized for the latest Cell Ranger pipeline.
+#### 3.3.3 Clean up the file directory tree. ####
+
+This will ensure that the files are correctly organized for the latest Cell Ranger pipeline.
+
 ```
 $ mv filtered_matrices_mex outs/filtered_gene_bc_matrices
 $ mv matrices_mex outs/raw_gene_bc_matrices
@@ -142,7 +149,7 @@ $ mv analysis_csv outs/analysis
 $ mv jurkat:293t_50:50_metrics_summary.csv outs/metrics_summary.csv
 ```
 
-#### 3.3.2 TSNE plot ####
+#### 3.3.4 TSNE plot ####
 This cleaned 10x data can be fed into the Cell Ranger pipeline. Cell Ranger provides a tutorial for creating TSNE plots and adding cell markers [here](http://cf.10xgenomics.com/supp/cell-exp/cellrangerrkit-PBMC-vignette-knitr-2.0.0.pdf).
 
 In order to use the cell assignment from demuxlet to label the cells, you can use the statistics information to adjust the cutoff for singlets to provide the identification for the optimum number of cells. To illustrate this point, below we show two TSNE plots with the cells labelled by the identity from demuxlet using either the identification as `SNG-[cell-type]` in the `BEST` column which labels 1455/3388 cells versus using the identification of singlets by comparing the likelihood of the cell being a singlet to the likelihood of the cell being a doublet (i.e. `SNG.LLK1 - LLK12 > 1`) which labelled 2491/3388 cells.

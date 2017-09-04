@@ -23,7 +23,8 @@ If you have questions about using demuxlet or suggestions for future releases, p
 
 #### 2.1.1. Install htslib ####
 ```
-$ git clone https://github.com/samtools/htslib.gitcd $ cd path/to/htslib
+$ git clone https://github.com/samtools/htslib.gitcd 
+$ cd path/to/htslib
 $ autoheader
 $ autoconf
 $ ./configure # optional, --prefix=/path/file

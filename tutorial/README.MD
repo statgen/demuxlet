@@ -33,9 +33,9 @@ Then, we need to install autoconf, automake, and libtool
 
 `$ brew install autoconf automake libtool`
 
-We will also need a new clang since Apple's version doesn't support OpenMPI
+We will also need gcc since Apple's clang doesn't support OpenMPI
 
-`brew upgrade llvm --with-clang`
+`brew install gcc`
 
 The CRAM format may use LZMA2 compression, which is implemented in HTSlib
 by using compression routines from liblzma <http://tukaani.org/xz/>.

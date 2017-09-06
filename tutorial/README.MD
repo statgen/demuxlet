@@ -28,11 +28,15 @@ You will need to install some additional packages on a Mac.
 First, you will need XCode CommandLineTools
 
 Second, it's good to install homebrew:
-```/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"```
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 
 Then, we need to install autoconf, automake, and libtool
 
-```$ brew install autoconf automake libtool```
+```
+$ brew install autoconf automake libtool
+```
 
 We will also need a new clang since Apple's clang doesn't support OpenMPI
 
@@ -51,7 +55,9 @@ build machine; you may need to ensure a package such as liblzma-dev (on Debian
 or Ubuntu Linux), xz-devel (on RPM-based Linux distributions or Cygwin), or
 xz (via Homebrew on macOS) is installed; or build XZ Utils from source. Assuming we are on a Mac:
 
-```$ brew install xz```
+```
+$ brew install xz
+```
 
 #### 2.1.1. Install htslib ####
 ```

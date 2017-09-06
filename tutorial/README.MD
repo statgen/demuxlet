@@ -90,11 +90,11 @@ or if you don't have `wget`
 
 #### 3.1.3. Download the VCF file with genotype data for 293T and Jurkat cells. See section 4 for original sources of VCF files. ####
 
-`$ wget https://github.com/statgen/demuxlet/blob/master/tutorial/jurkat_293T_exons_only.vcf.gz`
+`$ wget https://raw.githubusercontent.com/statgen/demuxlet/master/tutorial/jurkat_293T_exons_only.vcf.gz`
 
 of if you don't have `wget`
 
-`$ curl https://github.com/statgen/demuxlet/blob/master/tutorial/jurkat_293T_exons_only.vcf.gz > jurkat_293T_exons_only.vcf.gz`
+`$ curl https://raw.githubusercontent.com/statgen/demuxlet/master/tutorial/jurkat_293T_exons_only.vcf.gz > jurkat_293T_exons_only.vcf.gz`
 
 ### 3.2 Run demuxlet ###
 

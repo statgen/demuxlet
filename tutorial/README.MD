@@ -29,9 +29,9 @@ First, you will need XCode CommandLineTools
 
 Second, it's good to install homebrew: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-Then, we need to install autoconf and automake
+Then, we need to install autoconf, automake, and libtool
 
-`brew install autoconf automake`
+`brew install autoconf automake libtool`
 
 The CRAM format may use LZMA2 compression, which is implemented in HTSlib
 by using compression routines from liblzma <http://tukaani.org/xz/>.

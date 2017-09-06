@@ -133,7 +133,14 @@ The `[prefix].single` file contains the statistics for matching each cell with e
 
 ```
 $ cd /path/file/demuxlet
-$ ./demuxlet --sam /path/file/jurkat:293t_50:50_possorted_genome_bam.bam --vcf <(zcat /path/file/293T_jurkat_merged_sorted_updated_header.vcf.gz) --field GT --out /path/file/10x_293T_jurkat_demultiplex
+$ ./demuxlet --sam /path/file/jurkat:293t_50:50_possorted_genome_bam.bam --vcf <(zcat /path/file/jurkat_293T_exons_only.vcf.gz) --field GT --out /path/file/10x_293T_jurkat_demultiplex
+```
+
+or if you are on a mac
+
+```
+$ cd /path/file/demuxlet
+$ ./demuxlet --sam /path/file/jurkat:293t_50:50_possorted_genome_bam.bam --vcf <(gzcat /path/file/jurkat_293T_exons_only.vcf.gz) --field GT --out /path/file/10x_293T_jurkat_demultiplex
 ```
 
 ### 3.3 Secondary analysis in R ###

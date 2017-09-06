@@ -21,6 +21,28 @@ If you have questions about using demuxlet or suggestions for future releases, p
 
 ### 2.1. Installing demuxlet ###
 
+#### 2.1.0. MAC NOTES ####
+
+You will need to install some additional packages on a Mac.
+
+First, you will need XCode CommandLineTools
+
+Second, it's good to install homebrew: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+
+Then, we need to install autoconf
+
+`brew install autoconf`
+
+The CRAM format may use LZMA2 compression, which is implemented in HTSlib
+by using compression routines from liblzma <http://tukaani.org/xz/>.
+
+Building HTSlib requires liblzma development files to be installed on the
+build machine; you may need to ensure a package such as liblzma-dev (on Debian
+or Ubuntu Linux), xz-devel (on RPM-based Linux distributions or Cygwin), or
+xz (via Homebrew on macOS) is installed; or build XZ Utils from source. Assuming we are on a Mac:
+
+`brew install xz`
+
 #### 2.1.1. Install htslib ####
 ```
 $ git clone https://github.com/samtools/htslib.git

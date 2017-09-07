@@ -21,13 +21,21 @@ If you have questions about using demuxlet or suggestions for future releases, p
 
 ### 2.1. Installing docker ###
 
-### 2.2. Running demuxlet ###
+First, get docker for whatever platform you feel comfortable with.
+
+```https://www.docker.com/community-edition#/download```
+
+### 2.2. Running demuxlet from docker ###
+
+We have created a docker container at `yimmieg/demuxlet` to run `demuxlet` through docker.
+
+You can run it with 
+
 ```
-$ cd demuxlet
-$ ./demuxlet --sam $bam --vcf $vcf --field $(GT or GP or PL) --out $filename
+$ docker run -v path/to/tutorial:/data yimmieg/demuxlet --sam /data/$bam --vcf /data/$vcf --field $(GT or GP or PL) --out /data/$filename
 ```
 
-Add bam file name for `$bam` and vcf file name for `$vcf`. Use `<(zcat $vcf)` if vcf file is compressed
+Add bam file name for `$bam` and vcf file name for `$vcf`. Use `<(zcat $vcf)` or `<(gzcat $vcf)` if vcf file is compressed
 
 The options for `--field` are individual genotypes (GT), posterior probability (GP), or genotype likelihood (PL). If using GT option for `--field`, you must include `--geno-error`, which is the genotype error rate.
 
@@ -42,51 +50,21 @@ For complete descriptions of the columns in each output file, please see the dem
 
 ## 3. Analyzing the sample dataset ##
 
-You can download a VCF files for Jurkat and 293T cell lines that can be used to run demuxlet on the publicly available BAM file for a 50:50 mixture of 293T and Jurkat cells from the ChromiumTM Cell RangerTM pipeline.
-
 ### 3.1 Download datasets ###
 
-#### 3.1.1. Download the BAM file from 10x data for jurkat:293T sample ####
-
-`$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam.bam`
-
-or if you don't have `wget`
-
-`$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam.bam > jurkat:293t_50:50_possorted_genome_bam.bam`
-
-#### 3.1.2. Download the index file for BAM file from 10x data for jurkat:293T sample ####
-
-`$ wget http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam_index.bam.bai`
-
-or if you don't have `wget`
-
-`$ curl http://cf.10xgenomics.com/samples/cell-exp/1.1.0/jurkat:293t_50:50/jurkat:293t_50:50_possorted_genome_bam_index.bam.bai > jurkat:293t_50:50_possorted_genome_bam_index.bam.bai`
-
-#### 3.1.3. Download the VCF file with genotype data for 293T and Jurkat cells. See section 4 for original sources of VCF files. ####
-
-`$ wget https://raw.githubusercontent.com/statgen/demuxlet/master/tutorial/jurkat_293T_exons_only.vcf.gz`
-
-of if you don't have `wget`
-
-`$ curl https://raw.githubusercontent.com/statgen/demuxlet/master/tutorial/jurkat_293T_exons_only.vcf.gz > jurkat_293T_exons_only.vcf.gz`
+We are now providing a one-stop-shop to download all of the data you need for the tutorial:
 
 ### 3.2 Run demuxlet ###
 
 The `[prefix].single` file contains the statistics for matching each cell with each possible sample
 
 ```
-$ cd /path/file/demuxlet
-$ ./demuxlet --sam /path/file/jurkat:293t_50:50_possorted_genome_bam.bam --vcf <(zcat /path/file/jurkat_293T_exons_only.vcf.gz) --field GT --out /path/file/10x_293T_jurkat_demultiplex
-```
-
-or if you are on a mac
-
-```
-$ cd /path/file/demuxlet
-$ ./demuxlet --sam /path/file/jurkat:293t_50:50_possorted_genome_bam.bam --vcf <(gzcat /path/file/jurkat_293T_exons_only.vcf.gz) --field GT --out /path/file/10x_293T_jurkat_demultiplex
+$ cd /path/to/tutorial
+$ docker run -v path/to/tutorial:/data yimmieg/demuxlet --sam /data/jurkat_293t_50_50_possorted_genome_bam.bam --vcf jurkat_293t_exons_only.vcf --field GT --out jurkat_293t_demuxlet
 ```
 
 ### 3.3 Secondary analysis in R ###
+
 In this analysis, we will use R to produce a t-SNE (t-Distributed Stochastic Neighbor Embedding) plot of the cells from the 293T:Jurkat 10x experiment with the cells colored by the assignments from the demuxlet pipeline. The analysis requires the Cell Ranger R package.
 You can find instructions for downloading the Cell Ranger package [here](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/rkit).
 

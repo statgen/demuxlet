@@ -84,6 +84,16 @@ After this, you should get the following image:
 
 ![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture3.png)
 
+Let's also take a look at the doublets.
+
+```
+ggplot(aes(tsne1,tsne2,color=doublet),data=df)+geom_point()
+```
+
+After that, you should get the following image:
+
+![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture4.png)
+
 ## 4. Source of 293T and Jurkat VCF file. ##
 1. 293T VCF
 Source website:

@@ -80,6 +80,9 @@ cell.type=sapply(demuxlet$BEST,function(x){strsplit(x,"-")[[1]][[2]]}))
 ggplot(aes(tsne1,tsne2,color=cell.type),data=df)+geom_point()
 ```
 
+After this, you should get the following image:
+
+![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture3.png)
 
 ## 4. Source of 293T and Jurkat VCF file. ##
 1. 293T VCF

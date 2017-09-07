@@ -43,47 +43,26 @@ The demuxlet software produces three output files.
 
 1. `[prefix].best`
 The .best file contains the assignments of the best sample identity (singlet: `SNG-<sample name>`; doublet: `DBL-<sample IDs>`; ambiguous: `AMB-< >`) in the `BEST` column for each cell barcode identified in the `BARCODE` column along with details of the statistics used to determine the best identity.
-2. `[prefix].single`
+2. The `[prefix].single` file contains the statistics for matching each cell with each possible sample
+
 For complete descriptions of the columns in each output file, please see the demuxlet README.
 
 ## 3. Analyzing the sample dataset ##
 
 ### 3.1 Create directory and download datasets ###
 
-Let's first create a directory for this tutorial.
-
-```
-mkdir demuxlet.tutorial
-```
-
-Now, let's download the data we need. We are now providing a one-stop-shop to download all of the data you need for the tutorial: https://ucsf.box.com/s/vg1bycvsjgyg63gkqsputprq5rxzjl6k.
+Now, let's first download the data we need. We are now providing a one-stop-shop to download all of the data you need for the tutorial: https://ucsf.box.com/s/vg1bycvsjgyg63gkqsputprq5rxzjl6k. After downloading and unzipping (it's BIG), you should have a directory called `demuxlet.tutorial`.
 
 ### 3.2 Run demuxlet ###
-
-The `[prefix].single` file contains the statistics for matching each cell with each possible sample
 
 ```
 $ cd demuxlet.tutorial
 $ docker run -v ./:/data yimmieg/demuxlet --sam /data/jurkat_293t_downsampled_n500_full_bam.bam --vcf /data/jurkat_293t_exons_only.vcf --field GT --out data/jurkat_293t_demuxlet
 ```
 
-### 3.3 Secondary analysis in R ###
+### 3.3 Compare the called genotypes vs transcriptome data ###
 
-In this analysis, we will use R to produce a t-SNE (t-Distributed Stochastic Neighbor Embedding) plot of the cells from the 293T:Jurkat 10x experiment with the cells colored by the assignments from the demuxlet pipeline. The analysis requires the Cell Ranger R package.
-
-You can find instructions for downloading the Cell Ranger package [here](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/rkit).
-
-#### 3.3.1 Unzip and untar the files. ####
-
-Let's first unzip the tSNE plot 10x input into a outputs directory:
-
-```
-$ tar -x -z -f jurkat_293t_analysis.tar.gz
-```
-
-#### 3.3.2 TSNE plot ####
-
-Compare the called data to the tsne:
+In this analysis, we will use R to produce a t-SNE (t-Distributed Stochastic Neighbor Embedding) plot of the cells from the 293T:Jurkat 10x experiment with the cells colored by the assignments from the demuxlet pipeline.
 
 ```
 library(ggplot2);

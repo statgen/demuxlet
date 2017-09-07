@@ -21,9 +21,7 @@ If you have questions about using demuxlet or suggestions for future releases, p
 
 ### 2.1. Installing docker ###
 
-First, get docker for whatever platform you feel comfortable with.
-
-```https://www.docker.com/community-edition#/download```
+First, get docker for whatever platform you feel comfortable with: https://www.docker.com/community-edition#/download.
 
 ### 2.2. Running demuxlet from docker ###
 

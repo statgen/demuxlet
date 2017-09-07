@@ -83,15 +83,24 @@ $ tar -x -z -f jurkat_293t_analysis.tar.gz
 
 #### 3.3.2 TSNE plot ####
 
-This cleaned 10x data can be fed into the Cell Ranger pipeline. Cell Ranger provides a tutorial for creating TSNE plots and adding cell markers [here](http://cf.10xgenomics.com/supp/cell-exp/cellrangerrkit-PBMC-vignette-knitr-2.0.0.pdf).
+Compare the called data to the tsne:
 
-In order to use the cell assignment from demuxlet to label the cells, you can use the statistics information to adjust the cutoff for singlets to provide the identification for the optimum number of cells. To illustrate this point, below we show two TSNE plots with the cells labelled by the identity from demuxlet using either the identification as `SNG-[cell-type]` in the `BEST` column which labels 1455/3388 cells versus using the identification of singlets by comparing the likelihood of the cell being a singlet to the likelihood of the cell being a doublet (i.e. `SNG.LLK1 - LLK12 > 1`) which labelled 2491/3388 cells.
+```
+library(ggplot2);
+library(data.table);
 
-![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture1.png)
+## let's read in the barcodes
+tsne <- fread("analysis_csv/tsne/projection.csv");
+demuxlet <- fread("jurkat_293t_demuxlet.best");
 
-The identification of Jurkat versus 293T by `demuxlet` for this dataset can be verified by comparing the identification of the Jurkat and 293T clusters by expression of the CD3D and XIST markers, respectively.
+## let's filter for the barcodes that we sampled
 
-![](https://github.com/statgen/demuxlet/blob/master/tutorial/Picture2.png)
+df <- data.frame(tsne1=tsne$"TSNE-1"[na.omit(match(demuxlet$BARCODE,tsne$Barcode))], tsne2=tsne$"TSNE-2"[na.omit(match(demuxlet$BARCODE,tsne$Barcode))], doublet=sapply(demuxlet$BEST,function(x){strsplit(x,"-")[[1]][[1]]}),
+cell.type=sapply(demuxlet$BEST,function(x){strsplit(x,"-")[[1]][[2]]}))
+
+ggplot(aes(tsne1,tsne2,color=cell.type),data=df)+geom_point()
+```
+
 
 ## 4. Source of 293T and Jurkat VCF file. ##
 1. 293T VCF

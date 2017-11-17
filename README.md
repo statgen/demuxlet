@@ -100,6 +100,6 @@ The `[prefix].best` file contains the following 22 columns.
  1. LLK2    - The log(likelihood that the ID from DBL.2ND is the correct singlet assignment)
  1. LLK10   - The log(likelihood that the ID from DBL.1ST is one of the doublet, and the other doublet identity is calculated from allele frequencies only)   
  1. LLK20   - The log(likelihood that the ID from DBL.2ND is one of the doublet, and the other doublet identity is calculated from allele frequencies only)   
- 1. LLK00   - The log(likelihood that the droplet is doublet, but both identities are calculated from allele frequencies only)   
+ 1. LLK00   - The log(likelihood that the droplet is doublet, but both identities are calculated from allele frequencies only)
  1. PRB.DBL - Posterior probability of the doublet assignment
  1. PRB.SNG1 - Posterior probability of the singlet assignment

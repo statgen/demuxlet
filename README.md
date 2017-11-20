@@ -8,9 +8,7 @@ Genetic multiplexing of barcoded single cell RNA-seq
 
 ### Installing demuxlet
 
-Before installing demuxlet, you need to install [htslib](https://github.com/samtools/htslib) in the same directory you want to install demuxlet (i.e. demuxlet and htslib should be siblings).
-
-After installing htslib, you can clone the current snapshot of this repository to install as well
+Before installing demuxlet, you need to install [htslib](https://github.com/samtools/htslib). If you do not install this to standard system paths, you'll need to pass the directory for header files and compiled library file to configure. For example, if you downloaded and compiled htslib in `/opt/htslib`, run `./configure CPPFLAGS=-I/opt/htslib LDFLAGS=-L/opt/htslib`.
 
 <pre>
 $ git clone https://github.com/statgen/demuxlet.git

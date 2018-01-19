@@ -87,22 +87,22 @@ The `[prefix].best` file contains the following 22 columns.
     * For singlets, SNG-<sample ID>
     * For doublets, DBL-<sample ID1>-<sampleID2>-<mixture rate>
     * For ambiguous droplets, , AMB-<best-singlet-sampleID>-<next-best-singlet-sampleID>-<doublet ID1/ID2>)
- 1. SNG.1ST - The best singlet assignment for sample ID
- 1. SNG.LLK1 - The log(likelihood that the ID from SNG.1ST is the correct assignment)       
- 1. SNG.2ND - The next best singlet assignment for sample ID
- 1. SNG.LLK2 - The log(likelihood that the ID from SNG.2ND is the correct assignment)        
- 1. SNG.LLK0 - The log-likelihood from allele frequencies only      
- 1. DBL.1ST - The sample ID that is most likely included if the assignment is a doublet
- 1. DBL.2ND - The sample ID that is next most likely included ifthe assignment is a doublet
- 1. ALPHA   - % Mixture Proportion
- 1. LLK12   - The log(likelihood that the ID is a doublet)
- 1. LLK1    - The log(likelihood that the ID from DBL.1ST is the correct singlet assignment)
- 1. LLK2    - The log(likelihood that the ID from DBL.2ND is the correct singlet assignment)
- 1. LLK10   - The log(likelihood that the ID from DBL.1ST is one of the doublet, and the other doublet identity is calculated from allele frequencies only)   
- 1. LLK20   - The log(likelihood that the ID from DBL.2ND is one of the doublet, and the other doublet identity is calculated from allele frequencies only)   
- 1. LLK00   - The log(likelihood that the droplet is doublet, but both identities are calculated from allele frequencies only)
-  1. PRB.DBL - Posterior probability of the doublet assignment
-  1. PRB.SNG1 - Posterior probability of the singlet assignment
+ 7. SNG.1ST - The best singlet assignment for sample ID
+ 8. SNG.LLK1 - The log(likelihood that the ID from SNG.1ST is the correct assignment)       
+ 9. SNG.2ND - The next best singlet assignment for sample ID
+ 10. SNG.LLK2 - The log(likelihood that the ID from SNG.2ND is the correct assignment)        
+ 11. SNG.LLK0 - The log-likelihood from allele frequencies only      
+ 12. DBL.1ST - The sample ID that is most likely included if the assignment is a doublet
+ 13. DBL.2ND - The sample ID that is next most likely included ifthe assignment is a doublet
+ 14. ALPHA   - % Mixture Proportion
+ 15. LLK12   - The log(likelihood that the ID is a doublet)
+ 16. LLK1    - The log(likelihood that the ID from DBL.1ST is the correct singlet assignment)
+ 17. LLK2    - The log(likelihood that the ID from DBL.2ND is the correct singlet assignment)
+ 18. LLK10   - The log(likelihood that the ID from DBL.1ST is one of the doublet, and the other doublet identity is calculated from allele frequencies only)   
+ 19. LLK20   - The log(likelihood that the ID from DBL.2ND is one of the doublet, and the other doublet identity is calculated from allele frequencies only)   
+ 20. LLK00   - The log(likelihood that the droplet is doublet, but both identities are calculated from allele frequencies only)
+ 21. PRB.DBL - Posterior probability of the doublet assignment
+ 22. PRB.SNG1 - Posterior probability of the singlet assignment
     
 ### Tips for running
 

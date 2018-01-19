@@ -106,5 +106,5 @@ The `[prefix].best` file contains the following 22 columns.
     
 ### Tips for running
 
-Set --alpha 0.5, which assumes the expected proportion of 50% genetic mixture from two individuals, to get better estimates of doublets.
-Set --group-list to a list of barcodes (i.e. barcodes.tsv from 10X) to speed things up and only get demultiplexing for cells called by other methods
+* Set `--alpha 0.5`, which assumes the expected proportion of 50% genetic mixture from two individuals, to get better estimates of doublets.
+* Set `--group-list` to a list of barcodes (i.e. barcodes.tsv from 10X) to speed things up and only get demultiplexing for cells called by other methods

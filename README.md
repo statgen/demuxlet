@@ -103,3 +103,8 @@ The `[prefix].best` file contains the following 22 columns.
  1. LLK00   - The log(likelihood that the droplet is doublet, but both identities are calculated from allele frequencies only)
   1. PRB.DBL - Posterior probability of the doublet assignment
   1. PRB.SNG1 - Posterior probability of the singlet assignment
+    
+### Tips for running
+
+Set --alpha 0.5, which assumes the expected proportion of 50% genetic mixture from two individuals, to get better estimates of doublets.
+Set --group-list to a list of barcodes (i.e. barcodes.tsv from 10X) to speed things up and only get demultiplexing for cells called by other methods

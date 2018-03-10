@@ -1,6 +1,18 @@
 # demuxlet
 Genetic multiplexing of barcoded single cell RNA-seq
 
+### Citation
+
+Demuxlet has been published: https://www.nature.com/articles/nbt.4042
+
+If you find it useful, please cite: Kang et al., Nature Biotechnology 2017.
+
+### Tips for running
+
+* Set `--alpha 0 --alpha 0.5`, which assumes the expected proportion of 50% genetic mixture from two individuals, to get better estimates of doublets.
+* Set `--group-list` to a list of barcodes (i.e. barcodes.tsv from 10X) to speed things up and only get demultiplexing for cells called by other methods
+* To reproduce the results presented in Figure 2 of the demuxlet paper, please go to: https://github.com/yelabucsf/demuxlet_paper_code/tree/master/fig2 to download the vcf and the outputs of demuxlet.
+
 ### Introduction
 
 **_demuxlet_** is a software tool to deconvolute sample identity and identify multiplets when multiple samples are pooled by barcoded single cell sequencing.
@@ -104,8 +116,3 @@ The `[prefix].best` file contains the following 22 columns.
  21. PRB.DBL - Posterior probability of the doublet assignment
  22. PRB.SNG1 - Posterior probability of the singlet assignment
     
-### Tips for running
-
-* Set `--alpha 0 --alpha 0.5`, which assumes the expected proportion of 50% genetic mixture from two individuals, to get better estimates of doublets.
-* Set `--group-list` to a list of barcodes (i.e. barcodes.tsv from 10X) to speed things up and only get demultiplexing for cells called by other methods
-* To reproduce the results presented in the paper, please go to: https://github.com/yelabucsf/demuxlet_paper_code/tree/master/fig1 to download the vcf.

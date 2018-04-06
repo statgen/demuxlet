@@ -51,7 +51,7 @@ int32_t main(int32_t argc, char** argv) {
 
     LONG_PARAM_GROUP("Output Options", NULL)
     LONG_STRING_PARAM("out",&outPrefix,"Output file prefix")
-    LONG_MULTI_DOUBLE_PARAM("alpha",&gridAlpha, "Grid of alpha to search for (default is 0.1, 0.2, 0.3, 0.4, 0.5)")
+    LONG_MULTI_DOUBLE_PARAM("alpha",&gridAlpha, "Grid of alpha to search for (default is 0, 0.5)")
     LONG_PARAM("write-pair",&writePair, "Writing the (HUGE) pair file")
     LONG_DOUBLE_PARAM("doublet-prior",&doublet_prior, "Prior of doublet")
     LONG_INT_PARAM("sam-verbose",&sr.verbose, "Verbose message frequency for SAM/BAM/CRAM")
@@ -78,13 +78,13 @@ int32_t main(int32_t argc, char** argv) {
   if ( gridAlpha.empty() ) {
     gridAlpha.push_back(0);    
     //gridAlpha.push_back(0.05);
-    gridAlpha.push_back(0.1);
+    //gridAlpha.push_back(0.1);
     //gridAlpha.push_back(0.15);
-    gridAlpha.push_back(0.2);
+    //gridAlpha.push_back(0.2);
     //gridAlpha.push_back(0.25);        
-    gridAlpha.push_back(0.3);
+    //gridAlpha.push_back(0.3);
     //gridAlpha.push_back(0.35);    
-    gridAlpha.push_back(0.4);
+    //gridAlpha.push_back(0.4);
     //gridAlpha.push_back(0.45);    
     gridAlpha.push_back(0.5);    
   }

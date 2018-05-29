@@ -190,7 +190,7 @@ int32_t main(int32_t argc, char** argv) {
   kstring_t readseq = {0,0,0};
   kstring_t readqual = {0,0,0};
 
-  int32_t nReadsMultiSNPs = 0, nReadsSkipBCD = 0, nReadsPass = 0, nReadsRedundant = 0, nReadsN = 0, nReadsLQ = 0, nReadsTMP = 0;
+  int32_t nReadsMultiSNPs = 0, nReadsSkipBCD = 0, nReadsPass = 0, nReadsRedundant = 0, nReadsN = 0, nReadsLQ = 0, nReadsTMP = 0, nNonBiallelicSNPs = 0;
     
   while( sr.read() ) { // read SAM file
     int32_t endpos = bam_endpos(sr.cursor());
@@ -210,6 +210,19 @@ int32_t main(int32_t argc, char** argv) {
       if ( vr.read() ) {
 	if ( !vr.parse_posteriors(vr.cdr.hdr, vr.cursor(), field.c_str(), genoError) )
 	  error("[E:%s] Cannot parse posterior probability at %s:%d", __PRETTY_FUNCTION__, bcf_hdr_id2name(vr.cdr.hdr,vr.cursor()->rid), vr.cursor()->pos+1);
+
+	// check whether the variant is SNP and biallelic
+	if ( ( vr.cursor()->rlen > 1 ) || ( vr.cursor()->n_allele != 2 ) || ( strlen(vr.cursor()->d.allele[0]) > 1) ) {
+	  if ( nNonBiallelicSNPs < 10 ) {
+	    warning("VCF record must be biallelic SNPs. Ignoring non-SNPs and/or multi-allelic variants at %d:%d", bcf_hdr_id2name(vr.cdr.hdr,vr.cursor()->rid), vr.cursor()->pos+1);
+	  }
+
+	  ++nNonBiallelicSNPs;
+	  
+	  if ( nNonBiallelicSNPs == 10 ) {
+	    warning("Suppressing 10+ warnings of the same kind (non-SNP or multi-alleic variants)");
+	  }
+	}
 	
 	gps = new double[nv*3];
 	for(int32_t i=0; i < nv * 3; ++i) {
@@ -236,7 +249,7 @@ int32_t main(int32_t argc, char** argv) {
       }
       else {
 	if ( n_warning_no_gtag < 10 ) {
-	  notice("WARNING: Cannot find Droplet/Cell tag %s from %d-th read %s at %s:%d-%d. Treating all of them as a single group", tagUMI.c_str(), sr.n_read, bam_get_qname(sr.cursor()), bam_get_chrom(sr.hdr, sr.cursor()), sr.cursor()->core.pos, bam_endpos(sr.cursor()));
+	  notice("WARNING: Cannot find Droplet/Cell tag %s from %d-th read %s at %s:%d-%d. Treating all of them as a single group", tagGroup.c_str(), sr.n_read, bam_get_qname(sr.cursor()), bam_get_chrom(sr.hdr, sr.cursor()), sr.cursor()->core.pos, bam_endpos(sr.cursor()));
 	}
 	else if ( n_warning_no_gtag == 10 ) {
 	  notice("WARNING: Suppressing 10+ missing Droplet/Cell tag warnings...");
@@ -246,6 +259,8 @@ int32_t main(int32_t argc, char** argv) {
       
       if ( bcdSet.empty() || ( bcdSet.find(sbcd) != bcdSet.end() ) ) {
 	ibcd = scl.add_cell(sbcd);
+	if ( ( ibcd + 1 == scl.nbcs ) && ( scl.nbcs % 1000 == 0 ) )
+	  notice("Observed %d droplets with unique cell barcode", scl.nbcs);
       }
       else {
 	++nReadsSkipBCD;
@@ -334,6 +349,8 @@ int32_t main(int32_t argc, char** argv) {
 
   //notice("Finished processing %d reads across %d variants across %d barcodes", nReadsPass, (int32_t)v_poss.size(), (int32_t)bcMap.size(), (int32_t)bcMap.size());
   notice("Total number input reads : %d", sr.n_read);
+  notice("Total number valid droplets observed : %d", scl.nbcs);
+  notice("Total number valid SNPs observed     : %d", scl.nsnps);    
   notice("Total number of read-QC-passed reads : %d ", sr.n_read - sr.n_skip); //, nReadsN + nReadsUnique + nReadsLQ + nReadsPass);
   notice("Total number of skipped reads with ignored barcodes : %d", nReadsSkipBCD);
   notice("Total number of non-skipped reads with considered barcodes : %d", nReadsTMP);  

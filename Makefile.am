@@ -3,7 +3,7 @@
 ## to provide a way for the user to supply additional arguments.
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-AM_CPPFLAGS = -fopenmp -I ../htslib/ -I ../../htslib/htslib -pipe -D__STDC_LIMIT_MACROS -Wall -Wno-unused-local-typedefs -Wno-enum-compare -fpic -O2 
+AM_CPPFLAGS = -I ../htslib/ -I ../../htslib/htslib -pipe -D__STDC_LIMIT_MACROS -Wall -Wno-unused-local-typedefs -Wno-enum-compare -fpic -O2 
 
 noinst_HEADERS = \
 	Constant.h pException.h \

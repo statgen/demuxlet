@@ -25,6 +25,7 @@ int32_t main(int32_t argc, char** argv) {
   vr.vfilt.minCallRate = 0.5;
   vr.vfilt.maxAlleles = 2;  
   bool writePair = false;
+  bool onlySinglets = false;
   //bool fullPair = true;
   double doublet_prior = 0.5;
   std::string groupList;
@@ -53,6 +54,7 @@ int32_t main(int32_t argc, char** argv) {
     LONG_STRING_PARAM("out",&outPrefix,"Output file prefix")
     LONG_MULTI_DOUBLE_PARAM("alpha",&gridAlpha, "Grid of alpha to search for (default is 0, 0.5)")
     LONG_PARAM("write-pair",&writePair, "Writing the (HUGE) pair file")
+    LONG_PARAM("only-singlets", &onlySinglets, "If set, only singlets probabilities are computed and saved to file with extension .single. Will not compute doublet and best assignments.")
     LONG_DOUBLE_PARAM("doublet-prior",&doublet_prior, "Prior of doublet")
     LONG_INT_PARAM("sam-verbose",&sr.verbose, "Verbose message frequency for SAM/BAM/CRAM")
     LONG_INT_PARAM("vcf-verbose",&vr.verbose, "Verbose message frequency for VCF/BCF")
@@ -525,6 +527,10 @@ int32_t main(int32_t argc, char** argv) {
   }
   notice("Finished processing %d droplets total", i);  
   hts_close(wsingle);
+  if(onlySinglets) {
+    notice("Finished processing singlets, will not process doublets.");  
+    return 0;
+  }
 
   htsFile* wsing2 = hts_open((outPrefix+".sing2").c_str(),"w");
   htsFile* wpair = (writePair ? hts_open((outPrefix+".pair").c_str(),"w") : NULL);

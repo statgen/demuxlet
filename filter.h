@@ -25,7 +25,21 @@ THE SOFTWARE.  */
 #ifndef __FILTER_H__
 #define __FILTER_H__
 
-#include <htslib/vcf.h>
+extern "C" {
+#include "htslib/vcf.h"
+}
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+  size_t hts_realloc_or_die(unsigned long, unsigned long, unsigned long, unsigned long, int, void**, char const*);
+  //  int ks_resize2(kstring_t*, unsigned long);
+
+#ifdef __cplusplus
+}
+#endif  
+
+
 
 typedef struct _filter_t filter_t;
 

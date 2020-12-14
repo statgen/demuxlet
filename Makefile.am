@@ -8,7 +8,7 @@ AM_CPPFLAGS = -I ../htslib/ -I ../../htslib/htslib -pipe -D__STDC_LIMIT_MACROS -
 noinst_HEADERS = \
 	Constant.h pException.h \
 	genomeLoci.h \
-	bcf_variant_key.h bcf_filter_arg.h
+	bcf_variant_key.h bcf_filter_arg.h bcftools.h
 
 bin_PROGRAMS = demuxlet
 

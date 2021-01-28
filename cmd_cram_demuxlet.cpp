@@ -199,7 +199,7 @@ int32_t main(int32_t argc, char** argv) {
       continue;
     }
 
-    int32_t n_cleared = vr.clear_buffer_before( bcf_hdr_id2name(vr.cdr.hdr, vr.cursor()->rid), sr.cursor()->core.pos );
+    int32_t n_cleared = vr.clear_buffer_before(  bam_get_chrom(sr.hdr, sr.cursor()), sr.cursor()->core.pos );
     //for(int32_t i=ibeg; i < ibeg+n_cleared; ++i) {
     //  v_umis.clear();
     //}

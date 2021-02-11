@@ -20,7 +20,8 @@ If you find it useful, please cite: Kang et al., Nature Biotechnology 2017.
 
 ### Installing demuxlet
 
-Before installing demuxlet, you need to install [htslib](https://github.com/samtools/htslib) in the same directory you want to install demuxlet (i.e. demuxlet and htslib should be siblings).
+Before installing demuxlet, you need to install [htslib](https://github.com/samtools/htslib) in the same directory you want to install demuxlet (i.e. demuxlet and htslib should be siblings).  
+**NOTE** htslib 1.11 is not supported for now - use earlier releases (e.g. 1.10.x)
 
 After installing htslib, you can clone the current snapshot of this repository to install as well
 

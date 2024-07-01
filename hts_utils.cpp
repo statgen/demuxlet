@@ -175,7 +175,7 @@ void bam_get_seq_string(bam1_t *s, kstring_t *seq)
 {
     seq->l=0;
     uint8_t* sq = bam_get_seq(s);
-    for (uint16_t i = 0; i < bam_get_l_qseq(s); ++i)
+    for (uint32_t i = 0; i < bam_get_l_qseq(s); ++i)
     {
         kputc("=ACMGRSVTWYHKDBN"[bam_seqi(sq, i)], seq);
     }
